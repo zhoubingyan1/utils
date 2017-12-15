@@ -1,5 +1,13 @@
+//给数组循环中缓存length的值，如果你确定循环中数组的长度不会变化，那么你可以这样
+//使用箭头函数注意几点：
+//1、函数体内的this对象就是定义时所在的对象，而不是使用时所在对象；
+//2、不可以当作构造函数使用，也就是不能用new命令实例化一个对象，否则会抛出一个错误；
+//3、不可以使用arguments对象，该对象在函数体内不存在，如果要用的话，可以用rest参数代替；
+//4、不可以使用yield命令，箭头函数不能用作Generator函数；
+
+
 // 原生封装ajax
-function ajax(method, url, data, success) {
+const javascriptajax = (method, url, data, success) =>{
     var xhr = null;
     try {
         xhr = new XMLHttpRequest();//new一个xhr对象，这个对象像信使一样存在着
@@ -30,9 +38,10 @@ function ajax(method, url, data, success) {
     }
 };
 
-
+//使用
+addCSS('#demo{ height: 30px; background:#f00;}');
 //js动态生成css代码
-function addCSS(cssText){
+const addCSS = cssText =>{
     var style = document.createElement('style'),  //创建一个style元素
         head = document.head || document.getElementsByTagName('head')[0]; //获取head元素
     style.type = 'text/css'; //这里必须显示设置style元素的type属性为text/css，否则在ie中不起作用
@@ -55,37 +64,8 @@ function addCSS(cssText){
         var textNode = document.createTextNode(cssText);
         style.appendChild(textNode);
     }
-    head.appendChild(style); //把创建的style元素插入到head中    
-}
-
-//使用
-addCSS('#demo{ height: 30px; background:#f00;}');
-
-
-// Math.random()方法可返回0~1之间的随机数
-// Math.floor()方法可对一个数进行下舍入
-
-
-//取出数组中的随机项
-var ran = array[Math.floor(Math.random()*array.length)];
-
-//打乱数字数组的顺序
-var sortArray = array.sort(function(){
-    return Math.random() - 0.5;
-})
-
-//去除字符串的首尾空格
-var s = string.trim();
-
-//类数组对象遍历
-Array.prototype.forEach.call(argumens,function(value){
-    //DOM的NodeList和HTMLCollection也是类数组对象
-})
-
-//获取数组中最大值和最小值
-var max = Math.max.apply(Math,array);
-var min = Math.min.apply(Math,array);
-
+    head.appendChild(style); //把创建的style元素插入到head中 
+};
 
 //获取某月天数
 //传入date1参数，可以是字符串、日期对象实例；为空表示当月天数
@@ -97,24 +77,6 @@ const getdate = date1 => {
     date.setDate(32);
     return 32 - date.getDate();
 }
-
-
-
-
-//浮点数问题
-//0.1 + 0.2 = 0.30000000000000004 != 0.3
-
-//JSON序列化和反序列化
-//使用JSON.stringify()来将JavaScript对象系列化为有效的字符串。
-//使用JSON.parse()来将有效的字符串转换为javascript对象。
-
-//给数组循环中缓存length的值，如果你确定循环中数组的长度不会变化，那么你可以这样
-//使用箭头函数注意几点：
-//1、函数体内的this对象就是定义时所在的对象，而不是使用时所在对象；
-//2、不可以当作构造函数使用，也就是不能用new命令实例化一个对象，否则会抛出一个错误；
-//3、不可以使用arguments对象，该对象在函数体内不存在，如果要用的话，可以用rest参数代替；
-//4、不可以使用yield命令，箭头函数不能用作Generator函数；
-
 
 /**
 * arrayequal
@@ -140,12 +102,12 @@ const getdate = date1 => {
 * @param {String} cls
 * return {Boolean}
 */
- let hasClass = require('.hasClass');
- const addClass= (ele,clas)=>{
+var hasClass = require('.hasClass');
+const addClass= (ele,clas)=>{
     if (!hasClass(ele,clas)){
         ele.className += '' + cls;
     }
- };
+};
 
 
 /**
@@ -229,7 +191,7 @@ const removeCookie = name =>{
     var sys = {},
         ua = navigator.userAgent.toLowerCase(),
         s;
-    (s = ua.match(/rv:([\d.]+)\) like gecko/)) ? sys.ie = s[1]:
+        (s = ua.match(/rv:([\d.]+)\) like gecko/)) ? sys.ie = s[1]:
         (s = ua.match(/msie ([\d\.]+)/)) ? sys.ie = s[1] :
         (s = ua.match(/edge\/([\d\.]+)/)) ? sys.edge = s[1] :
         (s = ua.match(/firefox\/([\d\.]+)/)) ? sys.firefox = s[1] :
@@ -469,7 +431,7 @@ const getKeyName = keycode =>{
  * @param {Any} values
  */
 
- const deepClone = values =>{
+const deepClone = values =>{
     var copy;
     // Handle the 3 simple types, and null or undefined
     if (null == values || "object" != typeof values) return values;
@@ -563,7 +525,7 @@ const isEmail = str =>/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(str);
  * @return {String}
  */
 
- const digitUppercase = n =>{
+const digitUppercase = n =>{
     var fraction = ['角', '分'];
     var digit = [
         '零', '壹', '贰', '叁', '肆',
@@ -705,7 +667,7 @@ const formatRemainTime = endTime =>{
  * @return {Function}  新的节流函数
  */
 
- function throttle(delay, noTrailing, callback, debounceMode) {
+function throttle(delay, noTrailing, callback, debounceMode) {
     // After wrapper has stopped being called, this timeout ensures that
     // `callback` is executed at the proper times in `throttle` and `end`
     // debounce modes.
@@ -783,11 +745,3 @@ var throttle = require('./throttle');
 function debounce(delay, atBegin, callback) {
     return callback === undefined ? throttle(delay, atBegin, false) : throttle(delay, callback, atBegin !== false);
 };
-
-
-
-
-
-
-
-
