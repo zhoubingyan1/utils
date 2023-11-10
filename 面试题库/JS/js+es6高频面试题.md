@@ -41,4 +41,65 @@
 
 
 
-深浅拷贝
+### 深浅拷贝
+深拷贝和浅拷贝是只针对Object和Array这样的引用数据类型的。
+浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存。但深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。
+- 浅拷贝
+1.Object.assign()
+2.Array.prototype.concat()
+3.Array.prototype.slice()
+```js
+    // 数组与对象的赋值都叫做浅拷贝
+    let arr = [1,2,3,4,5];
+    let newArr = arr;
+    newArr.push(6);
+    console.log(arr,newArr) //arr:[1,2,3,4,5,6] newArr:[1,2,3,4,5,6]
+
+```
+
+- 深拷贝
+1.JSON.parse(JSON.stringify())
+2.手写递归：递归方法实现深度克隆原理：遍历对象、数组直到里边都是基本数据类型，然后再去复制，就是深度拷贝
+3.函数库lodash
+该函数库也有提供_.cloneDeep用来做 Deep Copy
+
+```js
+// 标准的深拷贝 => 引用数据类型(str,array,object)
+
+function deepClone(source){
+    if (typeof obj !== 'object' || obj === null) {
+        return obj;
+    }
+    // [] => Array(基类) {} =>Object
+    const targetObj = source.constructor === Array ? [] : {};
+    for(let key in source){
+        if(source.hasOwnProperty(key)){
+            // 引用数据类型
+            if(source[key]&&typeof source[key]=== 'object'){
+                targetObj[key]= source[key].constructor ===Array?[]:{}
+                //递归
+                targetObj[key]=deepClone(source[key])
+            }else{
+                // 基本数据类型，直接赋值
+                targetObj[key]=source[key]
+            }
+        }
+    }
+    return targetObj;
+}
+
+```
+```js
+// 解构赋值是深拷贝还是浅拷贝
+// 针对一维数组和对象是深拷贝 多维就是浅拷贝
+let arr =[1,2,3,4,5]
+let newArr = [...arr]
+newArr.push(6)
+console.log(arr,newArr)//arr:[1,2,3,4,5] newArr:[1,2,3,4,5,6]
+
+let arr2 = [[1,2,3,],[4,5]]
+let newArr2 = [...arr2]
+newArr2[0].push(6)
+console.log(arr2,newArr2) // arr2:[[1,2,3,6],[4,5]] newArr2:[[1,2,3,6],[4,5]]
+```
+
