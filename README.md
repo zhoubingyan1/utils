@@ -65,6 +65,10 @@
 
 ### VUE
 
+- [ Vue2-混入mixin（可复用性、全局混入）](https://github.com/zhoubingyan1/utils/issues/41)
+- [VUE - 环境变量配置](https://github.com/zhoubingyan1/utils/issues/35)
+- [vue2- 动画特效](https://github.com/zhoubingyan1/utils/issues/42)
+
 
 
 
