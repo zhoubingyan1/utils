@@ -5,6 +5,8 @@ Vue 2 和 Vue 3 之间有一些显著的区别。以下是它们的一些主要�
 
 - 2.Composition API： Vue 3 引入了 Composition API，这是一个新的组织组件逻辑的方式。相比于 Vue 2 的选项 API，Composition API 更灵活，更容易组织和重用代码。
 
+
+
 - 3.Teleport： Vue 3 引入了 Teleport 特性，允许你在 DOM 中的任何位置渲染组件的内容。这对于在应用程序中移动组件的位置或在不同的层次结构中渲染组件很有用。
 
 - 4.新的特性和改进： Vue 3 引入了一些新的特性，如 Fragments（片段）Custom 
