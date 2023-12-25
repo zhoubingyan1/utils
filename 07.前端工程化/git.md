@@ -1,3 +1,11 @@
+<!--
+ * @Author: 周炳艳 434387059@qq.com
+ * @Date: 2023-11-10 16:20:21
+ * @LastEditors: 周炳艳 434387059@qq.com
+ * @LastEditTime: 2023-12-25 10:20:56
+ * @FilePath: /utils/07.前端工程化/git.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 # git命令相关
 
 ### 删除本地分支
@@ -55,3 +63,20 @@ git tag -m "新增日志管理" 20221009.1 && git push origin --tag
 ### 删除本地tag和远程tag
 git tag -d 20220910.1　　　　
 git push origin :refs/tags/20220910.1
+
+
+### git拉取远程分支
+1.git clone ****
+2.切换分支git checkout branch
+3.拉取远端branch分支并合并到当前分支：git pull origin branch
+
+### 重新获取远端分支
+1.切换到其他分支：git checkout master
+2.删除本地分支内容:git branch -d 分支名
+3.建立本地分支并将远程分支拉取至本地
+git checkout -b 本地分支名 origin/远程分支名
+
+### 代码合并
+1.将本地的branch分支合并到当前分支：git merge branch
+2. 将某次提交的内容合并到当前分支：git cherry-pick
+
