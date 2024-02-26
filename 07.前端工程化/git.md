@@ -27,6 +27,8 @@ git stash clear
 git add .
 git commit -m "xxx开发中"
 
+git commit --no-verify -m "xxx开发中"
+
 ###  提交新开发分支至远程
 git push -u origin fixbug_20181108
 
